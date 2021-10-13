@@ -2,7 +2,7 @@
 
 ### Name : Saurabh Ambardekar
 ### NUID : 001099026
-### Course: INFO 6225 Network Structures and Cloud Computing
+### Course: CSYE 6225 Network Structures and Cloud Computing
 
 Steps:
 1. Add AWS credentials for dev and prod accounts.
