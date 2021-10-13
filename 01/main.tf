@@ -16,7 +16,7 @@ resource "aws_subnet" "subnet" {
   cidr_block              = each.value
   vpc_id                  = aws_vpc.vpc1.id
   availability_zone       = each.key
-  map_public_ip_on_launch = true
+  map_public_ip_on_launch = var.map_public_ip_on_launch
   tags = {
     Name = "csye6225-subnet-${each.key}-fall2021"
   }
@@ -38,7 +38,7 @@ resource "aws_route_table" "route_table" {
 
 resource "aws_route" "routes" {
   route_table_id         = aws_route_table.route_table.id
-  destination_cidr_block = "0.0.0.0/0"
+  destination_cidr_block = var.destination_cidr_block
   gateway_id             = aws_internet_gateway.internet_gateway.id
   depends_on             = [aws_route_table.route_table]
 }
