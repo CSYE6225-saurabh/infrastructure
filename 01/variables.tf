@@ -27,22 +27,51 @@ variable "subnet_cidr" {
   type = map(string)
 }
 
-variable "vpc_name"{
+variable "vpc_name" {
   type = string
 }
 
-variable "ig_name"{
+variable "ig_name" {
   type = string
 }
 
-variable "route_table_name"{
+variable "route_table_name" {
   type = string
 }
 
-variable "destination_cidr_block"{
+variable "destination_cidr_block" {
   type = string
 }
 
-variable "map_public_ip_on_launch"{
+variable "map_public_ip_on_launch" {
   type = bool
+}
+
+
+variable "rds_identifier" {
+  type = string
+}
+
+variable "rds_username" {
+  type = string
+}
+
+variable "rds_password" {
+  type = string
+}
+
+variable "s3_domain" {
+  type = string
+}
+
+variable "s3_name" {
+  type = string
+}
+
+variable "ec2_ami_id" {
+  type = string
+}
+
+variable "ec2_ssh_key" {
+  type = string
 }
