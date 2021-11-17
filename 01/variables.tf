@@ -75,3 +75,27 @@ variable "ec2_ami_id" {
 variable "ec2_ssh_key" {
   type = string
 }
+
+variable "alarm_low_period" {
+  type = number
+}
+
+variable "alarm_low_evaluation_period" {
+  type = number
+}
+
+variable "alarm_low_threshold" {
+  type = number
+}
+
+variable "alarm_high_period" {
+  type = number
+}
+
+variable "alarm_high_evaluation_period" {
+  type = number
+}
+
+variable "alarm_high_threshold" {
+  type = number
+}
