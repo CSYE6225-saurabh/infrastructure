@@ -36,3 +36,6 @@ terraform.rc
 saurabh
 saurabh.pub
 .DS_Store
+
+#zip file for lambda
+lambda_function.zip

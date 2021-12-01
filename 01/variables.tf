@@ -13,7 +13,14 @@ variable "profile" {
   type        = string
   description = ""
 }
-
+variable "az1" {
+type        = string
+  description = ""
+}
+variable "az2" {
+type        = string
+  description = ""
+}
 variable "vpcConfig" {
   type = object({
     enable_dns_hostnames             = bool
