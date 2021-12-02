@@ -325,7 +325,7 @@ resource "aws_launch_configuration" "as_conf" {
         cd /home/ubuntu/
         mkdir ./server
         cd server
-        echo "{\"host\":\"${aws_db_instance.rdsDbInstance.endpoint}\",\"hostReadReplics\":\"${aws_db_instance.readRDS.endpoint}\",\"username\":\"${var.rds_username}\",\"password\":\"${var.rds_password}\",\"database\":\"${var.rds_identifier}\",\"port\":3306,\"s3\":\"${aws_s3_bucket.s3.bucket}\",\"topic_arn\":\"${aws_sns_topic.EmailNotificationRecipeEndpoint.arn}\}" > config.json
+        echo "{\"host\":\"${aws_db_instance.rdsDbInstance.endpoint}\",\"hostReadReplics\":\"${aws_db_instance.readRDS.endpoint}\",\"username\":\"${var.rds_username}\",\"password\":\"${var.rds_password}\",\"database\":\"${var.rds_identifier}\",\"port\":3306,\"s3\":\"${aws_s3_bucket.s3.bucket}\",\"topic_arn\":\"${aws_sns_topic.EmailNotificationRecipeEndpoint.arn}\"}" > config.json
         cd ..
         sudo chmod -R 777 server
   EOF
@@ -585,9 +585,10 @@ Name = "CodeDeployLambdaServiceRole"
 resource "aws_dynamodb_table" "mydbtable" {
     provider = aws
     name = "csye6225-dynamo"
-    hash_key = "id"
-    read_capacity = 1
-    write_capacity = 1
+    hash_key = "UserName"
+    range_key = "Token"
+    read_capacity = 5
+    write_capacity = 5
 
     attribute {
         name = "UserName"
@@ -725,6 +726,16 @@ resource "aws_iam_role_policy_attachment" "topic_policy_attach_role" {
 role       = "${aws_iam_role.CodeDeployLambdaServiceRole.name}"
 depends_on = [aws_iam_role.CodeDeployLambdaServiceRole]
 policy_arn = "${aws_iam_policy.topic_policy.arn}"
+}
+
+resource "aws_iam_role_policy_attachment" "dynamoDB_policy_attach_role_ec2" {
+role       = "${aws_iam_role.ec2_s3_access_role.name}"
+policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "SNS_policy_attach_role_ec2" {
+role       = "${aws_iam_role.ec2_s3_access_role.name}"
+policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
 }
 
 resource "aws_iam_role_policy_attachment" "dynamoDB_policy_attach_role" {
