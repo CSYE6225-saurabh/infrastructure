@@ -14,11 +14,11 @@ variable "profile" {
   description = ""
 }
 variable "az1" {
-type        = string
+  type        = string
   description = ""
 }
 variable "az2" {
-type        = string
+  type        = string
   description = ""
 }
 variable "vpcConfig" {
@@ -105,4 +105,8 @@ variable "alarm_high_evaluation_period" {
 
 variable "alarm_high_threshold" {
   type = number
+}
+
+variable "account_id" {
+  type = string
 }
